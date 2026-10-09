@@ -1,0 +1,37 @@
+
+/*
+ * CHZZK Vertical Layout
+ * Version 1.0
+ *
+ * 넓은 화면 모드에서 세로 레이아웃 유지
+ * 영상 위 / 채팅 아래 배치
+ */
+
+/* 영상과 채팅을 세로로 배치 */
+#layout-body > section[class*="_is_large_wj4te_"] > div[class*="_wrapper_wj4te_"] {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+/* 영상 영역 */
+#layout-body > section[class*="_is_large_wj4te_"] > div[class*="_wrapper_wj4te_"] > main {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    flex: 1 1 auto !important;
+}
+
+/* 채팅 영역 */
+#layout-body > section[class*="_is_large_wj4te_"] > div[class*="_wrapper_wj4te_"] > #aside-chatting {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 35vh !important;
+    min-height: 180px !important;
+    max-height: 70vh !important;
+    flex: 0 0 35vh !important;
+}
