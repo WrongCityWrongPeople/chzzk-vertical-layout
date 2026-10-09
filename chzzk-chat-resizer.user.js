@@ -2,7 +2,7 @@
  // ==UserScript==
  // @name         치지직 채팅창 드래그 조절
  // @namespace    chzzk-custom-layout
- // @version      1.0
+ // @version      1.1.1
  // @description  넓은 화면 모드의 채팅 높이 조절
  // @match        https://chzzk.naver.com/live/*
  // @run-at       document-idle
@@ -152,6 +152,32 @@
      });
    }
 
-   setup();
-   setInterval(setup, 1200);
- })();
+
+  let scheduled = false;
+
+  const observer = new MutationObserver((mutations) => {
+    const onlyChatChanges = mutations.every(
+      (mutation) =>
+        mutation.target instanceof Element &&
+        mutation.target.closest('#aside-chatting')
+    );
+
+    if (onlyChatChanges) return;
+    if (scheduled) return;
+
+    scheduled = true;
+
+    requestAnimationFrame(() => {
+      scheduled = false;
+      setup();
+    });
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  setup();
+})();
+
